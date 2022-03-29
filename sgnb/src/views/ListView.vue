@@ -1,12 +1,12 @@
 <template>
   <transition name="tran" tag="div">
     <div class="wrapper" v-if="isListShow">
-      <a @click.prevent="SET_TOGGLE_MENU_LIST(false)">
+      <a @click="SET_TOGGLE_MENU_LIST(false)">
         <img src="../assets/close-icon.svg" class="close" />
       </a>
       <div class="list">
         <ul>
-          <a href="/">
+          <a href="/attq" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
               <h1>ATTQ</h1>
               <p>오늘의 질문 Answer To Today's Question</p>
@@ -78,9 +78,7 @@ export default {
 }
 
 .list {
-  position: relative;
-  top: 292px;
-  z-index: 9999;
+  z-index: 99;
   background-color: #282828;
   ul {
     list-style-type: none;
