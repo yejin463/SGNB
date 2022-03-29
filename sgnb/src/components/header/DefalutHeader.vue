@@ -7,19 +7,23 @@
         <img src="../../assets/list-icon.svg" />
       </a>
     </div>
+    <list-view />
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import ListView from "../../views/ListView.vue";
 export default {
+  components: {
+    ListView,
+  },
   data() {
     return {
       headerIcon: "../../assets/list-icon.svg",
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     ...mapMutations(["SET_TOGGLE_MENU_LIST"]),
   },
@@ -48,7 +52,8 @@ export default {
 
   > div {
     display: flex;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
     margin-right: 76px;
     > span {
       font-size: 16px;

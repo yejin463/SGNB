@@ -1,23 +1,20 @@
 <template>
   <div>
-    <DefalutHeader />
+    <defalut-header />
     <div class="main">
       <article class="logo">
         <h1><span>시간</span><span>낭비</span></h1>
         <h1><span>SG</span><span>NB</span></h1>
       </article>
     </div>
-    <list-view />
   </div>
 </template>
 
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
-import ListView from "./ListView.vue";
 export default {
   components: {
     DefalutHeader,
-    ListView,
   },
 };
 </script>
