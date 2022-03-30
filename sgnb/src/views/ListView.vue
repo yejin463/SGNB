@@ -18,7 +18,7 @@
               <p>답변 공유 Share Your Answer with Others</p>
             </li>
           </a>
-          <a href="/">
+          <a href="/ctpq" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
               <h1>CTPQ</h1>
               <p>이전 질문 확인 Check The Previous Question</p>
