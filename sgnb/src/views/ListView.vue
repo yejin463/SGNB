@@ -24,7 +24,7 @@
               <p>이전 질문 확인 Check The Previous Question</p>
             </li>
           </a>
-          <a href="/">
+          <a href="/rqtm" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
               <h1>RQTM</h1>
               <p>질문 추천 Recommend Question To the Manager</p>

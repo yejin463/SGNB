@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import MainView from "../views/MainView.vue";
 import ListView from "../views/ListView.vue";
 import TodayQuestionView from "../views/TodayQuestionView.vue";
+import QuestionRecommendView from "../views/QuestionRecommendView.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/attq",
     name: "attq",
     component: TodayQuestionView,
+  },
+  {
+    path: "/rqtm",
+    name: "rqtm",
+    component: QuestionRecommendView,
   },
 ];
 
