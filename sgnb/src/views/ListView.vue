@@ -12,7 +12,7 @@
               <p>오늘의 질문 Answer To Today's Question</p>
             </li>
           </a>
-          <a href="/">
+          <a href="/syao" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
               <h1>SYAO</h1>
               <p>답변 공유 Share Your Answer with Others</p>
