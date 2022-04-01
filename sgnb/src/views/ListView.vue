@@ -1,9 +1,9 @@
 <template>
   <transition name="tran" tag="div">
     <div class="wrapper" v-if="isListShow">
-      <a @click="SET_TOGGLE_MENU_LIST(false)">
+      <div @click="SET_TOGGLE_MENU_LIST(false)">
         <img src="../assets/close-icon.svg" class="close" />
-      </a>
+      </div>
       <div class="list">
         <ul>
           <a href="/attq" @click="SET_TOGGLE_MENU_LIST(false)">

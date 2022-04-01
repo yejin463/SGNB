@@ -46,6 +46,7 @@ article {
   > h1 {
     display: flex;
     gap: 0.16em;
+    cursor: default;
 
     > span {
       font-size: 3em;
