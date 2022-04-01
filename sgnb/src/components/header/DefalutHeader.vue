@@ -2,30 +2,33 @@
   <div class="header">
     <a href="/"><h1>SGNB</h1></a>
     <div>
-      <span>{{ !true ? "" : "로그인/회원가입" }}</span>
+      <span @click="SET_TOGGLE_LOGIN(true)">{{
+        !true ? "" : "로그인/회원가입"
+      }}</span>
       <a @click.prevent="SET_TOGGLE_MENU_LIST(true)">
         <img src="../../assets/list-icon.svg" />
       </a>
     </div>
     <list-view />
+    <login />
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
 import ListView from "../../views/ListView.vue";
+import Login from "../login/LoginModal.vue";
 export default {
   components: {
     ListView,
+    Login,
   },
   data() {
-    return {
-      headerIcon: "../../assets/list-icon.svg",
-    };
+    return {};
   },
   computed: {},
   methods: {
-    ...mapMutations(["SET_TOGGLE_MENU_LIST"]),
+    ...mapMutations(["SET_TOGGLE_MENU_LIST", "SET_TOGGLE_LOGIN"]),
   },
 };
 </script>
