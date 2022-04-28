@@ -25,9 +25,7 @@
           rows="8"
           placeholder="답변을 남겨주세요."
         ></textarea>
-        <div class="buttons">
-          <button>Edit Answer</button><button>Save Answer</button>
-        </div>
+        <div class="buttons"><button>Save Answer</button></div>
       </article>
     </div>
   </div>
