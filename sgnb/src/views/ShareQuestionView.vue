@@ -4,8 +4,8 @@
     <div class="wrapper">
       <article class="contents">
         <div class="pageDescription">
-          <h1>SYAO</h1>
-          <span>답변 공유 Share Your Answer with Others</span>
+          <h1>SQWO</h1>
+          <span>질문 공유 Share Question with Others</span>
         </div>
         <div class="list">
           <list-item :key="item" v-for="item in items"></list-item>
@@ -17,7 +17,7 @@
 
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
-import ListItem from "../components/list/AnswerListItem.vue";
+import ListItem from "../components/list/QuestionListItem.vue";
 export default {
   components: {
     DefalutHeader,

@@ -1,14 +1,11 @@
 <template>
   <div class="header">
     <a href="/"><h1>SGNB</h1></a>
-    <div>
-      <span @click="SET_TOGGLE_LOGIN(true)">{{
-        !true ? "" : "로그인/회원가입"
-      }}</span>
-      <a @click.prevent="SET_TOGGLE_MENU_LIST(true)">
-        <img src="../../assets/list-icon.svg" />
-      </a>
-    </div>
+    <!-- <div> -->
+    <a @click.prevent="SET_TOGGLE_MENU_LIST(true)">
+      <img src="../../assets/list-icon.svg" />
+    </a>
+    <!-- </div> -->
     <list-view />
     <login />
   </div>
@@ -43,30 +40,18 @@ export default {
   width: 100%;
   align-items: flex-end;
 
-  > a > h1 {
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 49px;
-    text-align: center;
-    letter-spacing: 0.16em;
-    margin: 0 0 0 100px;
-    color: #ffffff;
-  }
-
-  > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 76px;
-    > span {
-      font-size: 16px;
-      line-height: 22px;
+  > a {
+    > h1 {
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 49px;
       text-align: center;
-      margin-right: 32px;
+      letter-spacing: 0.16em;
+      margin: 0 0 0 100px;
       color: #ffffff;
-      cursor: pointer;
     }
     > img {
+      margin-right: 76px;
       cursor: pointer;
     }
   }

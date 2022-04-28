@@ -5,7 +5,7 @@ import ListView from "../views/ListView.vue";
 import TodayQuestionView from "../views/TodayQuestionView.vue";
 import QuestionRecommendView from "../views/QuestionRecommendView.vue";
 import PreviousQuestionView from "../views/PreviousQuestionView.vue";
-import ShaerAnswerView from '../views/ShareAnswerView.vue'
+import ShaerAnswerView from '../views/ShareQuestionView.vue'
 
 Vue.use(VueRouter);
 

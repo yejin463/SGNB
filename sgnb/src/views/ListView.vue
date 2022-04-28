@@ -14,8 +14,8 @@
           </a>
           <a href="/syao" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
-              <h1>SYAO</h1>
-              <p>답변 공유 Share Your Answer with Others</p>
+              <h1>SQWO</h1>
+              <p>질문 공유 Share Question with Others</p>
             </li>
           </a>
           <a href="/ctpq" @click="SET_TOGGLE_MENU_LIST(false)">
@@ -68,6 +68,9 @@ export default {
   top: 0;
   z-index: 9998;
   background-color: #282828;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close {

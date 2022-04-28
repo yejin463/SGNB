@@ -14,6 +14,7 @@
   border-radius: 3px;
   padding: 16px 12px 16px;
   height: 182px;
+  cursor: pointer;
   > img {
     width: 272px;
     height: 146px;

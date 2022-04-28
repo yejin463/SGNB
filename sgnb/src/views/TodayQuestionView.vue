@@ -16,7 +16,7 @@
             <img src="../assets/list-icon.svg" alt="" />
             <h1>365일 머리 안 감기 vs 365일 양치 안 하기</h1>
           </div>
-          <span>yejinjin 님</span>
+          <input type="text" />
         </div>
         <textarea
           name=""
@@ -149,6 +149,11 @@ export default {
         font-size: 2em;
         margin: 0;
       }
+    }
+
+    > input {
+      outline: none;
+      width: 100px;
     }
   }
   > textarea {
