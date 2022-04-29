@@ -4,20 +4,17 @@
     <div class="wrapper">
       <article class="contents">
         <div class="pageDescription">
-          <h1>ATTQ</h1>
-          <span>오늘의 질문 Answer To Today's Question</span>
+          <h1>RQTM</h1>
+          <span>Recommend Question To the Manager</span>
         </div>
+        <input type="text" placeholder="추천 질문을 작성해 주세요." />
         <textarea
           name=""
           id=""
           cols="96"
           rows="8"
-          placeholder="추천 질문을 작성해 주세요."
-        ></textarea>
-        <input
-          type="text"
           placeholder="해당 질문을 추천하는 이유를 작성해주세요."
-        />
+        ></textarea>
         <button>Save Question</button>
       </article>
     </div>
@@ -100,7 +97,6 @@ export default {
   > textarea {
     width: calc(100%-40px);
     padding: 16px 20px;
-    margin: 16px 0 12px 0;
     outline: none;
     font-weight: 400;
     font-size: 16px;
@@ -113,8 +109,9 @@ export default {
   > input {
     width: 729px;
     padding: 16px 20px;
-    font-size: 14px;
+    font-size: 18px;
     outline: none;
+    margin: 16px 0 12px 0;
   }
 
   > button {
