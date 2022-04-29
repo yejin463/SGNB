@@ -7,25 +7,22 @@
     </a>
     <!-- </div> -->
     <list-view />
-    <login />
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
 import ListView from "../../views/ListView.vue";
-import Login from "../login/LoginModal.vue";
 export default {
   components: {
     ListView,
-    Login,
   },
   data() {
     return {};
   },
   computed: {},
   methods: {
-    ...mapMutations(["SET_TOGGLE_MENU_LIST", "SET_TOGGLE_LOGIN"]),
+    ...mapMutations(["SET_TOGGLE_MENU_LIST"]),
   },
 };
 </script>

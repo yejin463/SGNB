@@ -13,9 +13,6 @@ export default new Vuex.Store({
     SET_TOGGLE_MENU_LIST(state, toggle) {
       state.isListShow = toggle;
     },
-    SET_TOGGLE_LOGIN(state, toggle) {
-      state.isModalShow = toggle;
-    },
   },
   actions: {},
   modules: {},
