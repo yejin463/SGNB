@@ -8,7 +8,11 @@
           <span>질문 공유 Share Question with Others</span>
         </div>
         <div class="list">
-          <list-item :key="item" v-for="item in items"></list-item>
+          <list-item
+            :key="item.id"
+            :item="item"
+            v-for="item in items"
+          ></list-item>
         </div>
       </article>
     </div>
@@ -18,6 +22,9 @@
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
 import ListItem from "../components/list/QuestionListItem.vue";
+import { db } from "../plugins/firebase";
+import { collection, getDocs, orderBy } from "firebase/firestore";
+
 export default {
   components: {
     DefalutHeader,
@@ -25,8 +32,21 @@ export default {
   },
   data() {
     return {
-      items: 10,
+      items: [],
     };
+  },
+  async mounted() {
+    const questions = await getDocs(
+      collection(db, "question"),
+      orderBy("timestamp", "desc")
+    );
+    questions.forEach((doc) => {
+      this.items.push({
+        id: doc.id,
+        question: doc.data().question,
+        imgSrc: doc.data().imgSrc,
+      });
+    });
   },
   methods: {},
 };
