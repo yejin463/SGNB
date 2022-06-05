@@ -7,15 +7,20 @@
           <h1>RQTM</h1>
           <span>Recommend Question To the Manager</span>
         </div>
-        <input type="text" placeholder="추천 질문을 작성해 주세요." />
+        <input
+          type="text"
+          placeholder="추천 질문을 작성해 주세요."
+          v-model="recommendQuestion"
+        />
         <textarea
           name=""
           id=""
           cols="96"
           rows="8"
           placeholder="해당 질문을 추천하는 이유를 작성해주세요."
+          v-model="recommendReason"
         ></textarea>
-        <button>Save Question</button>
+        <button @click="submit">Save Question</button>
       </article>
     </div>
   </div>
@@ -23,11 +28,25 @@
 
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../plugins/firebase";
+
 export default {
   components: {
     DefalutHeader,
   },
-  methods: {},
+  data: () => ({
+    recommendQuestion: "",
+    recommendReason: "",
+  }),
+  methods: {
+    async submit() {
+      await addDoc(collection(db, "recommend"), {
+        recommendQuestion: this.recommendQuestion,
+        recommendReason: this.recommendReason,
+      });
+    },
+  },
 };
 </script>
 
