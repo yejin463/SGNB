@@ -5,7 +5,8 @@ import ListView from "../views/ListView.vue";
 import TodayQuestionView from "../views/TodayQuestionView.vue";
 import QuestionRecommendView from "../views/QuestionRecommendView.vue";
 import PreviousQuestionView from "../views/PreviousQuestionView.vue";
-import ShaerAnswerView from '../views/ShareQuestionView.vue'
+import ShareQuestionView from "../views/ShareQuestionView.vue";
+import AnswerView from "../views/AnswerView.vue";
 
 Vue.use(VueRouter);
 
@@ -31,14 +32,19 @@ const routes = [
     component: QuestionRecommendView,
   },
   {
-    path: "/ctpq",
-    name: "ctpq",
+    path: "/atpq",
+    name: "atpq",
     component: PreviousQuestionView,
   },
   {
-    path: "/syao",
-    name: "syao",
-    component: ShaerAnswerView,
+    path: "/sqwo",
+    name: "sqwo",
+    component: ShareQuestionView,
+  },
+  {
+    path: "/attq/answer",
+    name: "answer",
+    component: AnswerView,
   },
 ];
 
