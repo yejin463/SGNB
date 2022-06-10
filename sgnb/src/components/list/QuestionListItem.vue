@@ -1,12 +1,32 @@
 <template>
-  <div class="item">
-    <img
-      src="https://w.namu.la/s/108b4300fb4526e8635c5b41092b0ac3d18b14892b5b4731734c98e8ffa00f5d1db21a5c1f687fa0e5c18baccb806c4a6dbe3e33981daed806314d700411844eaafae1832eb770d0fd995db304c7a715"
-      alt=""
-    />
-    <p>100% 100만원 vs 25% 500만원</p>
+  <div class="item" @click.prevent="shearQuestion(item.id)">
+    <img :src="item.imgSrc" alt="" />
+    <p>{{ item.question }}</p>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    item: Object,
+  },
+  methods: {
+    shearQuestion(id) {
+      const link = "http://localhost:8081/" + "attq?=" + id;
+      if (document.location.href.includes("sqwo")) {
+        var dummy = document.createElement("input");
+        document.body.appendChild(dummy);
+        dummy.value = link;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        alert("링크 복사 완료!");
+      } else {
+        location.href = link;
+      }
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .item {
   width: 272px;
