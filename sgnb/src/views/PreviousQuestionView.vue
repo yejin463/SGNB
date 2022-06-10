@@ -4,11 +4,15 @@
     <div class="wrapper">
       <article class="contents">
         <div class="pageDescription">
-          <h1>CTPQ</h1>
-          <span>이전 질문 확인 Check The Previous Question</span>
+          <h1>ATPQ</h1>
+          <span>이전 질문에 답변하기 Answer The Previous Question</span>
         </div>
         <div class="list">
-          <list-item :key="item" v-for="item in items"></list-item>
+          <list-item
+            :key="item.id"
+            :item="item"
+            v-for="item in items"
+          ></list-item>
         </div>
       </article>
     </div>
@@ -18,6 +22,9 @@
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
 import ListItem from "../components/list/QuestionListItem.vue";
+import { db } from "../plugins/firebase";
+import { collection, getDocs } from "firebase/firestore";
+
 export default {
   components: {
     DefalutHeader,
@@ -25,8 +32,18 @@ export default {
   },
   data() {
     return {
-      items: 10,
+      items: [],
     };
+  },
+  async mounted() {
+    const questions = await getDocs(collection(db, "question"));
+    questions.forEach((doc) => {
+      this.items.push({
+        id: doc.id,
+        question: doc.data().question,
+        imgSrc: doc.data().imgSrc,
+      });
+    });
   },
   methods: {},
 };
@@ -79,7 +96,7 @@ export default {
     gap: 16px 8px;
     overflow-y: scroll;
   }
-  
+
   .list::-webkit-scrollbar {
     display: none;
   }
