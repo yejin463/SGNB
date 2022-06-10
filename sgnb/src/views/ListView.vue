@@ -6,22 +6,22 @@
       </div>
       <div class="list">
         <ul>
-          <a href="/attq" @click="SET_TOGGLE_MENU_LIST(false)">
-            <li>
+          <a @click="SET_TOGGLE_MENU_LIST(false)">
+            <li @click="moveTodayQuestion">
               <h1>ATTQ</h1>
               <p>오늘의 질문 Answer To Today's Question</p>
             </li>
           </a>
-          <a href="/syao" @click="SET_TOGGLE_MENU_LIST(false)">
+          <a href="/sqwo" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
               <h1>SQWO</h1>
               <p>질문 공유 Share Question with Others</p>
             </li>
           </a>
-          <a href="/ctpq" @click="SET_TOGGLE_MENU_LIST(false)">
+          <a href="/atpq" @click="SET_TOGGLE_MENU_LIST(false)">
             <li>
-              <h1>CTPQ</h1>
-              <p>이전 질문 확인 Check The Previous Question</p>
+              <h1>ATPQ</h1>
+              <p>이전 질문 답변 Answer The Previous Question</p>
             </li>
           </a>
           <a href="/rqtm" @click="SET_TOGGLE_MENU_LIST(false)">
@@ -38,13 +38,31 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
+import { collection, orderBy, query, limit, getDocs } from "firebase/firestore";
+import { db } from "../plugins/firebase";
 
 export default {
+  data: () => ({
+    questionId: "",
+  }),
   computed: {
     ...mapState(["isListShow"]),
   },
   methods: {
     ...mapMutations(["SET_TOGGLE_MENU_LIST"]),
+    async moveTodayQuestion() {
+      const questions = await getDocs(
+        query(
+          collection(db, "question"),
+          orderBy("createDate", "desc"),
+          limit(1)
+        )
+      );
+      questions.forEach((doc) => {
+        this.questionId = doc.id;
+      });
+      location.href = "http://localhost:8081/attq?=" + this.questionId;
+    },
   },
 };
 </script>
@@ -89,20 +107,20 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 54px;
-    > a > li {
+    & li {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 0;
       opacity: 0.5;
       transition: 0.8s;
+      cursor: pointer;
       > h1 {
         font-weight: 400;
         font-size: 40px;
         letter-spacing: 0.16em;
         margin: 0;
         color: #fff;
-        //cursor: pointer;
       }
       > p {
         font-size: 20px;
@@ -113,7 +131,7 @@ export default {
         color: #fff;
       }
     }
-    > a > li:hover {
+    & li:hover {
       opacity: 1;
       > p {
         opacity: 1;
