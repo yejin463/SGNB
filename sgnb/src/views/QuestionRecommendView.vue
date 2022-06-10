@@ -41,12 +41,16 @@ export default {
   }),
   methods: {
     async submit() {
-      await addDoc(collection(db, "recommend"), {
-        recommendQuestion: this.recommendQuestion,
-        recommendReason: this.recommendReason,
-      });
-      alert("추천 질문 입력이 완료되었습니다. 소중한 의견 감사합니다 :)");
-      window.location.reload();
+      if (this.recommendQuestion.trim() && this.recommendReason.trim()) {
+        await addDoc(collection(db, "recommend"), {
+          recommendQuestion: this.recommendQuestion,
+          recommendReason: this.recommendReason,
+        });
+        alert("추천 질문 입력이 완료되었습니다. 소중한 의견 감사합니다 :)");
+        window.location.reload();
+      } else {
+        alert("질문 또는 추천 이유 입력을 확인해주세요!");
+      }
     },
   },
 };
