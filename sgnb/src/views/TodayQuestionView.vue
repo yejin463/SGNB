@@ -44,6 +44,7 @@ import {
   orderBy,
   query,
   limit,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../plugins/firebase";
 
@@ -56,6 +57,7 @@ export default {
     content: "",
     question: "",
     questionId: "",
+    answerId: "",
     createDate: "",
   }),
   async mounted() {
@@ -66,35 +68,44 @@ export default {
   },
   methods: {
     async save() {
-      let now = new Date();
-      this.createDate =
-        "" +
-        now.getFullYear() +
-        (now.getMonth() + 1) +
-        now.getDate() +
-        now.getHours() +
-        now.getMinutes() +
-        now.getSeconds();
+      if (this.nikname.trim() && this.content.trim()) {
+        let now = new Date();
+        this.createDate =
+          "" +
+          now.getFullYear() +
+          (now.getMonth() + 1) +
+          now.getDate() +
+          now.getHours() +
+          now.getMinutes() +
+          now.getSeconds();
 
-      await addDoc(collection(db, "question/" + this.questionId + "/answer"), {
-        name: this.nikname,
-        content: this.content,
-        createDate: this.createDate,
-      });
+        await addDoc(
+          collection(db, "question/" + this.questionId + "/answer"),
+          {
+            name: this.nikname,
+            content: this.content,
+            createDate: this.createDate,
+          }
+        );
 
-      const answerId = await getDoc(
-        query(
-          doc(db, "question/" + this.questionId + "/answer"),
-          orderBy("createDate", "desc", limit(1))
-        )
-      );
-      console.log(answerId);
-
-      // location.href =
-      //   "http://localhost:8081/attq/answer?question-id=" +
-      //   this.questionId +
-      //   "&answer-id=" +
-      //   answerId;
+        const answers = await getDocs(
+          query(
+            collection(db, "question/" + this.questionId + "/answer"),
+            orderBy("createDate", "desc"),
+            limit(1)
+          )
+        );
+        answers.forEach((doc) => {
+          this.answerId = doc.id;
+        });
+        location.href =
+          "http://localhost:8081/attq/answer?=" +
+          this.questionId +
+          "&=" +
+          this.answerId;
+      } else {
+        alert("별명 또는 답변 입력을 확인해주세요!");
+      }
     },
     share() {
       var dummy = document.createElement("input");
