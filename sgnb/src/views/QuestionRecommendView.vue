@@ -45,6 +45,8 @@ export default {
         recommendQuestion: this.recommendQuestion,
         recommendReason: this.recommendReason,
       });
+      alert("추천 질문 입력이 완료되었습니다. 소중한 의견 감사합니다 :)");
+      window.location.reload();
     },
   },
 };
@@ -145,6 +147,10 @@ export default {
     cursor: pointer;
     transition: 0.2s;
     margin-top: 20px;
+  }
+  > button:hover {
+    background-color: #efefef;
+    color: #282828;
   }
 }
 </style>
