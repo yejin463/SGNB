@@ -2,9 +2,9 @@
   <div>
     <defalut-header />
     <div class="wrapper">
-      <div class="shareBox">
+      <div class="shareBox" @click="share">
         <div><img src="../assets/share-icon.svg" alt="" /></div>
-        <span>SYAO</span>
+        <span>SQWO</span>
       </div>
       <article class="contents">
         <div class="pageDescription">
@@ -14,9 +14,9 @@
         <div class="question">
           <div>
             <img src="../assets/list-icon.svg" alt="" />
-            <h1>365일 머리 안 감기 vs 365일 양치 안 하기</h1>
+            <h1>{{ question }}</h1>
           </div>
-          <input type="text" />
+          <input type="text" placeholder="별명 입력" v-model="nikname" />
         </div>
         <textarea
           name=""
@@ -24,8 +24,11 @@
           cols="96"
           rows="8"
           placeholder="답변을 남겨주세요."
+          v-model="content"
         ></textarea>
-        <div class="buttons"><button>Save Answer</button></div>
+        <div class="buttons">
+          <button @click="save">Save Answer</button>
+        </div>
       </article>
     </div>
   </div>
@@ -33,11 +36,78 @@
 
 <script>
 import DefalutHeader from "../components/header/DefalutHeader.vue";
+import {
+  collection,
+  doc,
+  addDoc,
+  getDoc,
+  orderBy,
+  query,
+  limit,
+} from "firebase/firestore";
+import { db } from "../plugins/firebase";
+
 export default {
   components: {
     DefalutHeader,
   },
-  methods: {},
+  data: () => ({
+    nikname: "",
+    content: "",
+    question: "",
+    questionId: "",
+    createDate: "",
+  }),
+  async mounted() {
+    let getId = window.location.search.split("=");
+    this.questionId = getId[1];
+    const questions = await getDoc(doc(db, "question", this.questionId));
+    this.question = questions.data().question;
+  },
+  methods: {
+    async save() {
+      let now = new Date();
+      this.createDate =
+        "" +
+        now.getFullYear() +
+        (now.getMonth() + 1) +
+        now.getDate() +
+        now.getHours() +
+        now.getMinutes() +
+        now.getSeconds();
+
+      await addDoc(collection(db, "question/" + this.questionId + "/answer"), {
+        name: this.nikname,
+        content: this.content,
+        createDate: this.createDate,
+      });
+
+      const answerId = await getDoc(
+        query(
+          doc(db, "question/" + this.questionId + "/answer"),
+          orderBy("createDate", "desc", limit(1))
+        )
+      );
+      console.log(answerId);
+
+      // location.href =
+      //   "http://localhost:8081/attq/answer?question-id=" +
+      //   this.questionId +
+      //   "&answer-id=" +
+      //   answerId;
+    },
+    share() {
+      var dummy = document.createElement("input");
+      var text = location.href;
+
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+      alert("링크 복사 완료!");
+    },
+  },
 };
 </script>
 
